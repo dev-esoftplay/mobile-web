@@ -129,3 +129,10 @@ if (fs.existsSync(espPath + "modules/user/index.tsx")) {
 	fs.writeFileSync(espPath + "modules/user/index.tsx", userIndexLimitReady)
 	console.log("user Index limit ready Fix !")
 }
+/* replace start prpject */
+if (fs.existsSync(rootPath + "package.json")) {
+	let pack = fs.readFileSync(rootPath + "package.json", { encoding: 'utf8' })
+	pack = pack.replace(`"start": "esp start && expo start --dev-client",`, '"start": "esp start && expo start --web",')
+	fs.writeFileSync(rootPath + "package.json", pack)
+	console.log("user Index limit ready Fix !")
+}
