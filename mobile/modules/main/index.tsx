@@ -12,7 +12,7 @@ export interface MainIndexProps {
 }
 export default function m(props: MainIndexProps): any {
   return (
-    <View style={{ flex: 1, backgroundColor: 'orange' }} >
+    <View style={{ flex: 1, backgroundColor: 'red' }} >
     </View>
   )
 }
