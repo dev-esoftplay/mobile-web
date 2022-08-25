@@ -16,7 +16,7 @@
     "@react-navigation/native": "^6.0.12",
     "@react-navigation/native-stack": "^6.8.0",
     "@react-navigation/stack": "^6.2.3",
-    "esoftplay": "0.0.117-l",
+    "esoftplay": "0.0.117-m",
     "esoftplay-web": "^0.0.2-a",
     "expo": "~46.0.9",
     "expo-camera": "~12.3.0",
