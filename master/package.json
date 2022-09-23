@@ -1,6 +1,6 @@
 {
   "name": "esoftplay-web",
-  "version": "0.0.2-a",
+  "version": "0.0.2-g",
   "description": "web module on esoftplay framework",
   "main": "index.js",
   "scripts": {

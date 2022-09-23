@@ -126,6 +126,14 @@ if (!fs.existsSync(espPath + '/modules/log')) {
 if (fs.existsSync(espPath + "modules/user/index.tsx")) {
 	let userIndexLimitReady = fs.readFileSync(espPath + "modules/user/index.tsx", { encoding: 'utf8' })
 	userIndexLimitReady = userIndexLimitReady.replace(`let limitReady = 3`, 'let limitReady = 2')
+	userIndexLimitReady = userIndexLimitReady.replace(`LibUpdaterProperty.check()`, '')
+	userIndexLimitReady = userIndexLimitReady.replace(`useEffect(() => {
+    if (!loading) {
+      setTimeout(() => {
+        LibVersion.check()
+      }, 0);
+    }
+  }, [loading])`, '')
 	fs.writeFileSync(espPath + "modules/user/index.tsx", userIndexLimitReady)
 	console.log("user Index limit ready Fix !")
 }
@@ -134,5 +142,25 @@ if (fs.existsSync(rootPath + "package.json")) {
 	let pack = fs.readFileSync(rootPath + "package.json", { encoding: 'utf8' })
 	pack = pack.replace(`"start": "esp start && expo start --dev-client",`, '"start": "esp start && expo start --web",')
 	fs.writeFileSync(rootPath + "package.json", pack)
-	console.log("user Index limit ready Fix !")
+	console.log("package json ready Fix !")
+}
+
+/* add service worker */
+if (fs.existsSync(rootPath + "App.tsx")) {
+	let pack = fs.readFileSync(rootPath + "App.tsx", { encoding: 'utf8' })
+	pack = pack.replace(`enableFreeze()`, `
+import * as serviceWorkerRegistration from "./src/serviceWorkerRegistration";
+serviceWorkerRegistration.register();
+enableFreeze()`)
+	fs.writeFileSync(rootPath + "App.tsx", pack)
+	console.log("App.tsx updated !")
+}
+
+/* replace globalstate */
+
+if (fs.existsSync(espPath + "/global.ts")) {
+	let pack = fs.readFileSync(espPath + "/global.ts", { encoding: 'utf8' })
+	pack = pack.replace(`const STORAGE = o?.inFile ? new Storage() : AsyncStorage`, 'const STORAGE = AsyncStorage')
+	fs.writeFileSync(espPath + "/global.ts", pack)
+	console.log("globalState fix!")
 }
