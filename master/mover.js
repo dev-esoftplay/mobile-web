@@ -145,17 +145,6 @@ if (fs.existsSync(rootPath + "package.json")) {
 	console.log("package json ready Fix !")
 }
 
-/* add service worker */
-if (fs.existsSync(rootPath + "App.tsx")) {
-	let pack = fs.readFileSync(rootPath + "App.tsx", { encoding: 'utf8' })
-	pack = pack.replace(`enableFreeze()`, `
-import * as serviceWorkerRegistration from "./src/serviceWorkerRegistration";
-serviceWorkerRegistration.register();
-enableFreeze()`)
-	fs.writeFileSync(rootPath + "App.tsx", pack)
-	console.log("App.tsx updated !")
-}
-
 /* replace globalstate */
 
 if (fs.existsSync(espPath + "/global.ts")) {

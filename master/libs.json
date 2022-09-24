@@ -1,18 +1,5 @@
 [
   "react-native-web",
   "@expo/webpack-config",
-  "react-dom",
-  "workbox-background-sync",
-  "workbox-broadcast-update",
-  "workbox-cacheable-response",
-  "workbox-core",
-  "workbox-expiration",
-  "workbox-google-analytics",
-  "workbox-navigation-preload",
-  "workbox-precaching",
-  "workbox-range-requests",
-  "workbox-routing",
-  "workbox-strategies",
-  "workbox-streams",
-  "workbox-webpack-plugin"
+  "react-dom"
 ]
