@@ -139,8 +139,8 @@ const Cell = {
   Button: (props: any) => {
     return (
       <View style={{ borderWidth: 1, width: 70 * (props.size || 1), borderColor: "transparent", paddingHorizontal: 11, paddingVertical: 5, borderRightWidth: 1, borderRightColor: '#a9a9a9', flexDirection: 'row', justifyContent: props.numeric ? 'flex-end' : 'flex-start', alignItems: 'center' }} >
-        <Pressable style={{ padding: 6,  borderRadius: 5, backgroundColor: 'indigo', ...LibStyle.elevation(3) }} >
-          <Text selectable={false } style={{ color: 'white', textAlign: 'center', fontWeight: "bold", paddingHorizontal: 10 }} >{props.title}</Text>
+        <Pressable style={{ padding: 6,  borderRadius: 5, backgroundColor: 'white', ...LibStyle.elevation(3) }} >
+          <Text selectable={false } style={{ color: 'indigo', textAlign: 'center', fontWeight: "bold", paddingHorizontal: 10 }} >{props.title}</Text>
         </Pressable>
       </View>
     )
