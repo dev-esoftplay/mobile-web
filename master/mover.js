@@ -149,7 +149,7 @@ if (fs.existsSync(rootPath + "package.json")) {
 
 if (fs.existsSync(espPath + "/global.ts")) {
 	let pack = fs.readFileSync(espPath + "/global.ts", { encoding: 'utf8' })
-	pack = pack.replace(`const STORAGE = o?.inFile ? new Storage() : AsyncStorage`, 'const STORAGE = AsyncStorage')
+	pack = pack.replace(`const STORAGE = o?.inFile ? Storage : AsyncStorage`, 'const STORAGE = AsyncStorage')
 	fs.writeFileSync(espPath + "/global.ts", pack)
 	console.log("globalState fix!")
 }

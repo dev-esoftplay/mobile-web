@@ -1,18 +1,19 @@
 // withHooks
 
 import { useSafeState } from 'esoftplay';
+import { LibDropdown } from 'esoftplay/cache/lib/dropdown/import';
 import { LibIcon } from 'esoftplay/cache/lib/icon/import';
 import { LibStyle } from 'esoftplay/cache/lib/style/import';
 import { LibUtils } from 'esoftplay/cache/lib/utils/import';
 import React from 'react';
 import { Pressable, ScrollView, Text, TextInput, View } from 'react-native';
 
-
 export interface LibDatatableArgs {
 
 }
 export interface LibDatatableProps {
-
+  headers: string[],
+  data: any[]
 }
 
 
@@ -139,8 +140,8 @@ const Cell = {
   Button: (props: any) => {
     return (
       <View style={{ borderWidth: 1, width: 70 * (props.size || 1), borderColor: "transparent", paddingHorizontal: 11, paddingVertical: 5, borderRightWidth: 1, borderRightColor: '#a9a9a9', flexDirection: 'row', justifyContent: props.numeric ? 'flex-end' : 'flex-start', alignItems: 'center' }} >
-        <Pressable style={{ padding: 6,  borderRadius: 5, backgroundColor: 'white', ...LibStyle.elevation(3) }} >
-          <Text selectable={false } style={{ color: 'indigo', textAlign: 'center', fontWeight: "bold", paddingHorizontal: 10 }} >{props.title}</Text>
+        <Pressable style={{ padding: 6, borderRadius: 5, backgroundColor: 'white', ...LibStyle.elevation(3) }} >
+          <Text selectable={false} style={{ color: 'indigo', textAlign: 'center', fontWeight: "bold", paddingHorizontal: 10 }} >{props.title}</Text>
         </Pressable>
       </View>
     )
@@ -184,39 +185,96 @@ const Footer = {
   }
 }
 
-export default function m(props: LibDatatableProps): any {
+const rawData = [
+  { id: 1, value: 'ABCD' },
+  { id: 1, value: 'ABCD' },
+  { id: 1, value: 'ABCD' },
+  { id: 1, value: 'ABCD' },
+]
 
-  const [data, setData] = useSafeState(datas)
+function DropDownItems({ title }: any) {
+  const styles = {
+    popupItem: {
+      justifyContent: 'center',
+      paddingLeft: 20,
+      paddingVertical: 15,
+      borderBottomWidth: 0.7,
+      borderBottomColor: '#ccc',
+    },
+    popupItemText: {},
+  }
+  return (
+    <View style={styles.popupItem}>
+      <Text style={styles.popupItemText}>{title}</Text>
+    </View>
+  );
+}
+
+
+const Filter = (props: any) => {
+
+  const [show, setShow] = useSafeState(false)
+  const [filter, setFilter] = useSafeState<any>()
+
 
   return (
-    <View style={{ flex: 1, paddingTop: LibStyle.STATUSBAR_HEIGHT + 20, backgroundColor: '#f6f6f6' }} >
+    <View style={{ flexDirection: 'row', padding: 16, alignItems: 'flex-start' }} >
+      <TextInput placeholder={'Search'} placeholderTextColor={"#aaa"} style={{ flex: 1, padding: 5, borderRadius: 3, paddingVertical: 11, borderWidth: 1, borderColor: '#afafaf', outlineWidth: 0 }} />
+      <View style={{ marginLeft: 10 }} >
+        <LibDropdown
+          label="Select or Enter"
+          options={rawData}
+          value={filter}
+          renderItem={(item) => (
+            <Pressable style={{ zIndex: 500 }} key={item.id} onPress={() => { setFilter(item) }}>
+              <DropDownItems title={item.value} />
+            </Pressable>
+          )}
+        />
+      </View>
+    </View>
+  )
+}
+
+export default function m(props: LibDatatableProps): any {
+
+  console.log(props.data)
+
+  return (
+    <View style={{ flex: 1, paddingTop: LibStyle.STATUSBAR_HEIGHT + 20 }} >
+      {/* <Filter /> */}
       <ScrollView horizontal style={{ backgroundColor: 'white' }} >
         <View>
           <View style={{ flexDirection: 'row', overflow: 'hidden', borderLeftWidth: 1, borderColor: "#a9a9a9", marginHorizontal: 16 }} >
-            <Header.TextSortable title={'ID'} numeric />
-            <Header.TextSortable title={'Nama'} size={5} />
-            <Header.Text title={'Handphone'} size={3} />
-            <Header.Text title={'Button'} size={2} />
-            <Header.Checkbox title={'Action'} size={2} />
+            <Header.Text title={'No'} numeric />
+            {
+              props.headers.map((title) => {
+                return (<Header.Text title={title.toUpperCase()} size={2} />)
+              })
+            }
           </View>
           <ScrollView>
             <View style={{ overflow: 'hidden', marginHorizontal: 16, borderLeftWidth: 1, borderColor: "#a9a9a9", borderBottomWidth: 1 }} >
               {
-                data.map((row, idx) => {
+                props?.data?.map?.((row, idx) => {
                   const colors = idx % 2 != 0 ? '#f9f9ff' : "white"
                   return (
                     <View key={idx.toString()} style={{ flexDirection: 'row', backgroundColor: colors }} >
                       <Cell.Text title={idx + 1} numeric />
-                      <Cell.Text title={row.nama} size={5} />
-                      <Cell.Text title={row.phone} size={3} />
-                      <Cell.Button title={row.age} size={2} />
-                      <Cell.Checkbox title={"Update"} size={2} />
+                      {
+                        props.headers.map((title) => {
+                          return (
+                            <Cell.Text title={row[title]} size={2} />
+                          )
+                        })
+                      }
+                      {/* <Cell.Text title={} numeric /> */}
                     </View>
                   )
                 })
               }
             </View>
-            <Footer.Paginate />
+            {/* <Footer.Paginate /> */}
           </ScrollView>
         </View>
       </ScrollView>
