@@ -149,7 +149,7 @@ const Cell = {
   Input: (props: any) => {
     return (
       <View style={{ borderWidth: 1, width: 70 * (props.size || 1), borderColor: "transparent", paddingHorizontal: 11, paddingVertical: 5, borderRightWidth: 1, borderRightColor: '#a9a9a9', flexDirection: 'row', justifyContent: props.numeric ? 'flex-end' : 'flex-start', alignItems: 'center' }} >
-        <TextInput placeholder={props.title.toString()} placeholderTextColor={"#aaa"} style={{ flex: 1, padding: 5, borderRadius: 10, borderWidth: 1, borderColor: '#a9a9a9', outlineWidth: 0 }} />
+        <TextInput placeholder={props.title.toString()} placeholderTextColor={"#aaa"} style={{ flex: 1, padding: 5, borderRadius: 10, borderWidth: 1, borderColor: '#a9a9a9', outlineWidth: 0 }}  {...props} />
       </View>
     )
   },
@@ -238,8 +238,6 @@ const Filter = (props: any) => {
 
 export default function m(props: LibDatatableProps): any {
 
-  console.log(props.data)
-
   return (
     <View style={{ flex: 1, paddingTop: LibStyle.STATUSBAR_HEIGHT + 20 }} >
       {/* <Filter /> */}
@@ -252,6 +250,7 @@ export default function m(props: LibDatatableProps): any {
                 return (<Header.Text title={title.toUpperCase()} size={2} />)
               })
             }
+            <Header.Text title={'Keterangan'} size={4} />
           </View>
           <ScrollView>
             <View style={{ overflow: 'hidden', marginHorizontal: 16, borderLeftWidth: 1, borderColor: "#a9a9a9", borderBottomWidth: 1 }} >
@@ -268,13 +267,12 @@ export default function m(props: LibDatatableProps): any {
                           )
                         })
                       }
-                      {/* <Cell.Text title={} numeric /> */}
+                      <Cell.Input title={''} size={4} />
                     </View>
                   )
                 })
               }
             </View>
-            {/* <Footer.Paginate /> */}
           </ScrollView>
         </View>
       </ScrollView>
