@@ -47,7 +47,7 @@ export default function m(props: MainInputProps): any {
           }
           props.onSave(titleRef?.current?.getText(), variantRef.current?.getText().split('\n'))
         }}
-        style={[{ backgroundColor: 'green', height: 34, borderRadius: 5, alignItems: 'center', justifyContent: 'center', marginHorizontal: 16, padding: 20 }, LibStyle.elevation(4)]} >
+        style={[{ backgroundColor: '#2DA44E', height: 34, borderRadius: 5, alignItems: 'center', justifyContent: 'center', marginHorizontal: 16, padding: 20 }, LibStyle.elevation(4)]} >
         <LibTextstyle textStyle='m_button' text='Save' style={{ color: 'white' }} />
       </Pressable>
     </View>

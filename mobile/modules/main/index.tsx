@@ -13,7 +13,6 @@ import React, { useEffect, useRef } from 'react';
 import { FlatList, Pressable, View } from 'react-native';
 
 
-
 export interface MainIndexArgs {
 
 }
@@ -87,25 +86,27 @@ export default function m(props: MainIndexProps): any {
               </Pressable>
             )
           }}
-          ListFooterComponent={<View>
-            <Pressable
-              onPress={() => {
-                selected.reset()
-                slidingRef?.current?.show()
-              }}
-              style={{ backgroundColor: 'green', height: 30, borderRadius: 5, minWidth: 300, alignSelf: 'center', marginVertical: 40, marginHorizontal: 16, alignItems: 'center', justifyContent: 'center', padding: 20, ...LibStyle.elevation(4) }} >
-              <LibTextstyle text='Add' textStyle='m_button' style={{ color: 'white' }} />
-            </Pressable>
-          </View>}
         />
       </View>
-      {
-        data.length > 0 &&
-        <MainDatatable headers={headers} data={datatable} />
-      }
+      <View style={{ flex: 1 }} >
+        {
+          data.length > 0 &&
+          <MainDatatable headers={headers} data={datatable} />
+        }
+      </View>
+      <View>
+        <Pressable
+          onPress={() => {
+            selected.reset()
+            slidingRef?.current?.show()
+          }}
+          style={{ backgroundColor: '#2DA44E', height: 30, borderRadius: 5, minWidth: Math.min(600, LibStyle.width - 30), alignSelf: 'center', marginVertical: 40, marginHorizontal: 16, alignItems: 'center', justifyContent: 'center', padding: 20, ...LibStyle.elevation(4) }} >
+          <LibTextstyle text='Add' textStyle='m_button' style={{ color: 'white' }} />
+        </Pressable>
+      </View>
       <LibSlidingup ref={slidingRef} >
         <View style={{ alignItems: 'center' }} >
-          <View style={{ maxWidth: 500, minWidth: LibStyle.width - 50, backgroundColor: 'white', paddingVertical: 20, borderRadius: 10 }} >
+          <View style={{ minWidth: Math.min(LibStyle.width, 600), backgroundColor: 'white', paddingVertical: 20, borderRadius: 10 }} >
             <MainInput defaultValue={selectedData} onSave={(title, variant) => {
               let x
               if (!selectedData) {
