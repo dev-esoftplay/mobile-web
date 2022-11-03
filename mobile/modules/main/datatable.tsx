@@ -16,70 +16,6 @@ export interface LibDatatableProps {
   data: any[]
 }
 
-
-const datas = [
-  {
-    id: 1,
-    nama: "Munawar Kholil",
-    phone: "081234566789",
-    age: 1234567
-  },
-  {
-    id: 2,
-    nama: "Munawar Masmun",
-    phone: "081234566789",
-    age: 1234567
-  },
-  {
-    id: 3,
-    nama: "Munawar Cholil",
-    phone: "081234566789",
-    age: 1234567
-  },
-  {
-    id: 4,
-    nama: "Munawar Aja",
-    phone: "081234566789",
-    age: 1234567
-  },
-  {
-    id: 4,
-    nama: "Munawar Aja",
-    phone: "081234566789",
-    age: 1234567
-  },
-  {
-    id: 4,
-    nama: "Munawar Aja",
-    phone: "081234566789",
-    age: 1234567
-  },
-  {
-    id: 4,
-    nama: "Munawar Aja",
-    phone: "081234566789",
-    age: 1234567
-  },
-  {
-    id: 4,
-    nama: "Munawar Aja",
-    phone: "081234566789",
-    age: 1234567
-  },
-  {
-    id: 4,
-    nama: "Munawar Aja",
-    phone: "081234566789",
-    age: 1234567
-  },
-  {
-    id: 4,
-    nama: "Munawar Aja",
-    phone: "081234566789",
-    age: 1234567
-  }
-]
-
 export interface HeaderProps {
   title: string,
   numeric?: boolean,
@@ -240,11 +176,10 @@ export default function m(props: LibDatatableProps): any {
 
   return (
     <View style={{ flex: 1, paddingTop: LibStyle.STATUSBAR_HEIGHT + 20 }} >
-      {/* <Filter /> */}
       <ScrollView horizontal style={{ backgroundColor: 'white' }} >
         <View>
           <View style={{ flexDirection: 'row', overflow: 'hidden', borderLeftWidth: 1, borderColor: "#a9a9a9", marginHorizontal: 16 }} >
-            <Header.Text title={'No'} numeric />
+            {/* <Header.Text title={'No'} numeric /> */}
             {
               props.headers.map((title) => {
                 return (<Header.Text title={title.toUpperCase()} size={2} />)
@@ -259,7 +194,7 @@ export default function m(props: LibDatatableProps): any {
                   const colors = idx % 2 != 0 ? '#f9f9ff' : "white"
                   return (
                     <View key={idx.toString()} style={{ flexDirection: 'row', backgroundColor: colors }} >
-                      <Cell.Text title={idx + 1} numeric />
+                      {/* <Cell.Text title={idx + 1} numeric /> */}
                       {
                         props.headers.map((title) => {
                           return (

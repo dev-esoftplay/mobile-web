@@ -2,6 +2,7 @@
 
 import { useSafeState } from 'esoftplay';
 import { LibIcon } from 'esoftplay/cache/lib/icon/import';
+import { LibNavigation } from 'esoftplay/cache/lib/navigation/import';
 import { LibObject } from 'esoftplay/cache/lib/object/import';
 import { LibSlidingup } from 'esoftplay/cache/lib/slidingup/import';
 import { LibStyle } from 'esoftplay/cache/lib/style/import';
@@ -97,8 +98,9 @@ export default function m(props: MainIndexProps): any {
       <View>
         <Pressable
           onPress={() => {
-            selected.reset()
-            slidingRef?.current?.show()
+            LibNavigation.push('main/print')
+            // selected.reset()
+            // slidingRef?.current?.show()
           }}
           style={{ backgroundColor: '#2DA44E', height: 30, borderRadius: 5, minWidth: Math.min(600, LibStyle.width - 30), alignSelf: 'center', marginVertical: 40, marginHorizontal: 16, alignItems: 'center', justifyContent: 'center', padding: 20, ...LibStyle.elevation(4) }} >
           <LibTextstyle text='Add' textStyle='m_button' style={{ color: 'white' }} />
