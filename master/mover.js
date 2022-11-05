@@ -108,7 +108,7 @@ if (fs.existsSync(rootPath + 'App.tsx')) {
 	console.log("Web Configs added!")
 }
 /* add ts-node */
-shell("cd ../../ && npm install --save-dev ts-node")
+// shell("cd ../../ && npm install --save-dev ts-node")
 
 /* replace curl logger */
 if (!fs.existsSync(espPath + '/modules/log')) {
