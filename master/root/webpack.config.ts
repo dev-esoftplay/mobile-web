@@ -1,10 +1,10 @@
 const createExpoWebpackConfigAsync = require('@expo/webpack-config/webpack').default;
-
+const transpileModule = require('./transpileModule')
 module.exports = async function (env: any, argv: any) {
   const config = await createExpoWebpackConfigAsync(
     {
       ...env,
-      babel: { dangerouslyAddModulePathsToTranspile: ["esoftplay"] },
+      dangerouslyAddModulePathsToTranspile: transpileModule ? ["esoftplay", ...transpileModule] : ["esoftplay"]
     },
     argv
   );
