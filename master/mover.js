@@ -126,7 +126,9 @@ if (!fs.existsSync(espPath + '/modules/log')) {
 if (fs.existsSync(espPath + "modules/user/index.tsx")) {
 	let userIndexLimitReady = fs.readFileSync(espPath + "modules/user/index.tsx", { encoding: 'utf8' })
 	userIndexLimitReady = userIndexLimitReady.replace(`let limitReady = 3`, 'let limitReady = 2')
+	userIndexLimitReady = userIndexLimitReady.replace(`Font.loadAsync(fonts).then(() => r())`, "r()")
 	userIndexLimitReady = userIndexLimitReady.replace(`LibUpdaterProperty.check()`, '')
+	userIndexLimitReady = userIndexLimitReady.replace(`<Worker.View />`, "<></>")
 	userIndexLimitReady = userIndexLimitReady.replace(`useEffect(() => {
     if (!loading) {
       setTimeout(() => {
