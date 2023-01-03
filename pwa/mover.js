@@ -96,10 +96,10 @@ if (fs.existsSync(rootPath + 'App.tsx')) {
 /* add service worker */
 if (fs.existsSync(rootPath + "App.tsx")) {
 	let pack = fs.readFileSync(rootPath + "App.tsx", { encoding: 'utf8' })
-	pack = pack.replace(`enableFreeze()`, `
+	pack = pack.replace(`export default function App()`, `
 import * as serviceWorkerRegistration from "./src/serviceWorkerRegistration";
 serviceWorkerRegistration.register();
-enableFreeze()`)
+export default function App()`)
 	fs.writeFileSync(rootPath + "App.tsx", pack)
 	console.log("App.tsx updated !")
 }
