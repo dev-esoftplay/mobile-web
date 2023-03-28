@@ -1,15 +1,17 @@
 const createExpoWebpackConfigAsync = require('@expo/webpack-config/webpack').default;
 const path = require("path");
 const WorkboxWebpackPlugin = require("workbox-webpack-plugin");
-
+const transpileModule = require('./transpileModule')
 module.exports = async function (env: any, argv: any) {
-  
+
   const isEnvProduction = env.mode === "production";
 
   const config = await createExpoWebpackConfigAsync(
     {
       ...env,
-      babel: { dangerouslyAddModulePathsToTranspile: ["esoftplay"] },
+      babel: {
+        dangerouslyAddModulePathsToTranspile: transpileModule ? ["esoftplay", ...transpileModule] : ["esoftplay"]
+      },
     },
     argv
   );
