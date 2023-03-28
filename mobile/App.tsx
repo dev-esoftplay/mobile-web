@@ -13,6 +13,12 @@ enableScreens()
 
 Notifications.addNotificationResponseReceivedListener(x => LibNotification.onAction(x));
 
+
+import * as serviceWorkerRegistration from "./src/serviceWorkerRegistration";
+serviceWorkerRegistration.register();
+
+import * as serviceWorkerRegistration from "./src/serviceWorkerRegistration";
+serviceWorkerRegistration.register();
 export default function App() {
 	useEffect(() => {
 		globalIdx.reset()

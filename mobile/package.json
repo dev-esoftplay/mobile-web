@@ -4,7 +4,7 @@
   "homepage": "/sell",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
-    "start": "esp start && expo start --dev-client",
+    "start": "esp start && expo start --web",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web"
@@ -18,7 +18,8 @@
     "@react-navigation/native": "^6.0.12",
     "@react-navigation/native-stack": "^6.8.0",
     "@react-navigation/stack": "^6.2.3",
-    "esoftplay": "0.0.123-c",
+    "@shopify/flash-list": "1.1.0",
+    "esoftplay": "0.0.125-l",
     "esoftplay-web": "0.0.2-q",
     "esoftplay-web-pwa": "0.0.1-e",
     "expo": "~46.0.16",

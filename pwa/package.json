@@ -1,6 +1,6 @@
 {
   "name": "esoftplay-web-pwa",
-  "version": "0.0.1-e",
+  "version": "0.0.1-f",
   "description": "pwa plugin web module on esoftplay framework",
   "main": "index.js",
   "scripts": {

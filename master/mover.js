@@ -101,7 +101,7 @@ if (fs.existsSync(espPath + 'modules/lib/')) {
 /* copy web configs  */
 if (fs.existsSync(rootPath + 'App.tsx')) {
 	try {
-		shell('cp -n ./root/* ' + rootPath)
+		shell('cp -n -r ./root/* ' + rootPath)
 	} catch (error) {
 
 	}

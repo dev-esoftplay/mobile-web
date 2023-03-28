@@ -86,7 +86,7 @@ if (fs.existsSync(rootPath + 'App.tsx')) {
 		shell('rm -f ' + rootPath + 'webpack.config.ts')
 	}
 	try {
-		shell('cp -n ./root/* ' + rootPath)
+		shell('cp -n -r ./root/* ' + rootPath)
 	} catch (error) {
 
 	}
