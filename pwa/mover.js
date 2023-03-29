@@ -5,9 +5,13 @@ const { moduleName } = require("./index")
 const assetsFonts = "assets/fonts"
 /* copy directory */
 if (fs.existsSync('../esoftplay/esp.ts')) {
-	if (fs.existsSync('../esoftplay/modules/' + moduleName))
-		shell('rm -r ../esoftplay/modules/' + moduleName)
-	shell("cp -r ./" + moduleName + " ../esoftplay/modules/")
+	try {
+		if (fs.existsSync('../esoftplay/modules/' + moduleName))
+			shell('rm -r ../esoftplay/modules/' + moduleName)
+		shell("cp -r ./" + moduleName + " ../esoftplay/modules/")
+	} catch (error) {
+
+	}
 } else {
 	throw "Mohon install esoftplay package terlebih dahulu"
 }
@@ -81,25 +85,31 @@ if (fs.existsSync("./libs.json")) {
 const rootPath = '../../'
 
 /* copy web configs  */
-if (fs.existsSync(rootPath + 'App.tsx')) {
-	if (fs.existsSync(rootPath + 'webpack.config.ts')) {
-		shell('rm -f ' + rootPath + 'webpack.config.ts')
-	}
-	try {
+try {
+	if (fs.existsSync(rootPath + 'App.tsx')) {
+		if (fs.existsSync(rootPath + 'webpack.config.ts')) {
+			shell('rm -f ' + rootPath + 'webpack.config.ts')
+		}
 		shell('cp -n -r ./root/* ' + rootPath)
-	} catch (error) {
-
+		console.log("Web Configs added!")
 	}
-	console.log("Web Configs added!")
+} catch (error) {
+
 }
 
 /* add service worker */
 if (fs.existsSync(rootPath + "App.tsx")) {
-	let pack = fs.readFileSync(rootPath + "App.tsx", { encoding: 'utf8' })
-	pack = pack.replace(`export default function App()`, `
+	try {
+		let pack = fs.readFileSync(rootPath + "App.tsx", { encoding: 'utf8' })
+		pack = pack.replace(`onAction(x));
+
+export`, `onAction(x));
 import * as serviceWorkerRegistration from "./src/serviceWorkerRegistration";
 serviceWorkerRegistration.register();
-export default function App()`)
-	fs.writeFileSync(rootPath + "App.tsx", pack)
-	console.log("App.tsx updated !")
+export`)
+		fs.writeFileSync(rootPath + "App.tsx", pack)
+		console.log("App.tsx updated !")
+	} catch (error) {
+
+	}
 }

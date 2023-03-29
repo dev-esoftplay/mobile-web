@@ -113,29 +113,43 @@ if (fs.existsSync(rootPath + 'App.tsx')) {
 /* replace curl logger */
 if (!fs.existsSync(espPath + '/modules/log')) {
 	if (fs.existsSync(espPath + "modules/lib/curl.ts")) {
-		let curl = fs.readFileSync(espPath + "modules/lib/curl.ts", { encoding: 'utf8' })
-		curl = curl.replace(`const LogStateProperty  = require('../log/state')?.LogStateProperty
-    if (LogStateProperty) {
-      LogStateProperty.doLogCurl(this.uri, this.url, post, this.isSecure)
-    }`, '')
-		fs.writeFileSync(espPath + "modules/lib/curl.ts", curl)
-		console.log("LibCUrl Fix !")
+		try {
+			let curl = fs.readFileSync(espPath + "modules/lib/curl.ts", { encoding: 'utf8' })
+			curl = curl.replace(`import { LogStateProperty } from 'esoftplay/cache/log/state/import';`,'')
+			curl = curl.replace(`if (LogStateProperty) {
+        var resJson = typeof resText == 'string' && ((resText.startsWith("{") && resText.endsWith("}")) || (resText.startsWith("[") && resText.endsWith("]"))) ? JSON.parse(resText) : resText
+        LogStateProperty.doLogCurl(this.uri, this.url, post, this.isSecure, resJson)
+      }`, '')
+			curl = curl.replace(`if (LogStateProperty) {
+        var resJson = typeof resText == 'string' && ((resText.startsWith("{") && resText.endsWith("}")) || (resText.startsWith("[") && resText.endsWith("]"))) ? JSON.parse(resText) : resText
+        LogStateProperty.doLogCurl(this.uri, this.url, post, this.isSecure, resJson)
+      }`,``)
+			fs.writeFileSync(espPath + "modules/lib/curl.ts", curl)
+			console.log("LibCUrl Fix !")
+		} catch (error) {
+
+		}
 	}
 }
 /* replace user index logger */
 if (fs.existsSync(espPath + "modules/user/index.tsx")) {
 	let userIndexLimitReady = fs.readFileSync(espPath + "modules/user/index.tsx", { encoding: 'utf8' })
-	userIndexLimitReady = userIndexLimitReady.replace(`let limitReady = 3`, 'let limitReady = 2')
-	userIndexLimitReady = userIndexLimitReady.replace(`Font.loadAsync(fonts).then(() => r())`, "r()")
-	userIndexLimitReady = userIndexLimitReady.replace(`LibUpdaterProperty.check()`, '')
-	userIndexLimitReady = userIndexLimitReady.replace(`<Worker.View />`, "<></>")
-	userIndexLimitReady = userIndexLimitReady.replace(`useEffect(() => {
-    if (!loading) {
-      setTimeout(() => {
-        LibVersion.check()
-      }, 0);
-    }
-  }, [loading])`, '')
+	try { userIndexLimitReady = userIndexLimitReady.replace(`let limitReady = 3`, 'let limitReady = 2') } catch (error) { }
+	try { userIndexLimitReady = userIndexLimitReady.replace(`Font.loadAsync(fonts).then(() => r())`, "r()") } catch (error) { }
+	try { userIndexLimitReady = userIndexLimitReady.replace(`LibUpdaterProperty.check()`, '') } catch (error) { }
+	try { userIndexLimitReady = userIndexLimitReady.replace(`<Worker.View />`, "<></>") } catch (error) { }
+	try {
+		userIndexLimitReady = userIndexLimitReady.replace(`useEffect(() => {
+			if (!loading) {
+				setTimeout(() => {
+					LibVersion.check()
+				}, 0);
+			}
+		}, [loading])`, '')
+	} catch (error) {
+
+	}
+
 	fs.writeFileSync(espPath + "modules/user/index.tsx", userIndexLimitReady)
 	console.log("user Index limit ready Fix !")
 }
