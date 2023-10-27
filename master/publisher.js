@@ -72,5 +72,5 @@ if (fs.existsSync("./package.json")) {
 	const newPackJson = { ...packJson, version: nextVersion }
 	fs.writeFileSync("./package.json", JSON.stringify(newPackJson, undefined, 2))
 	shell("npm publish")
-	console.log(" npm install--save esoftplay-" + moduleName + "@" + nextVersion + " ")
+	console.log("bun add esoftplay-" + moduleName + "@" + nextVersion + " ")
 }

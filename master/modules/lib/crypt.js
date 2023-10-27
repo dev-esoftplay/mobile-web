@@ -1,5 +1,5 @@
-import { esp } from 'esoftplay';
-
+//noPage
+import esp from 'esoftplay/esp';
 
 var crypto = require("crypto")
 var Buffer = require('buffer').Buffer
@@ -78,7 +78,7 @@ class Ecrypt {
   getIV(length) {
     var o = "";
     for (var i = 0; i < length; i++) {
-     var j = this.rand(97, 122);
+      var j = this.rand(97, 122);
       if (this.rand(0, 1) > 0) {
         j -= 32
       }

@@ -115,7 +115,7 @@ if (!fs.existsSync(espPath + '/modules/log')) {
 	if (fs.existsSync(espPath + "modules/lib/curl.ts")) {
 		try {
 			let curl = fs.readFileSync(espPath + "modules/lib/curl.ts", { encoding: 'utf8' })
-			curl = curl.replace(`import { LogStateProperty } from 'esoftplay/cache/log/state/import';`,'')
+			curl = curl.replace(`import { LogStateProperty } from 'esoftplay/cache/log/state/import';`, '')
 			curl = curl.replace(`if (LogStateProperty) {
         var resJson = typeof resText == 'string' && ((resText.startsWith("{") && resText.endsWith("}")) || (resText.startsWith("[") && resText.endsWith("]"))) ? JSON.parse(resText) : resText
         LogStateProperty.doLogCurl(this.uri, this.url, post, this.isSecure, resJson)
@@ -123,7 +123,7 @@ if (!fs.existsSync(espPath + '/modules/log')) {
 			curl = curl.replace(`if (LogStateProperty) {
         var resJson = typeof resText == 'string' && ((resText.startsWith("{") && resText.endsWith("}")) || (resText.startsWith("[") && resText.endsWith("]"))) ? JSON.parse(resText) : resText
         LogStateProperty.doLogCurl(this.uri, this.url, post, this.isSecure, resJson)
-      }`,``)
+      }`, ``)
 			fs.writeFileSync(espPath + "modules/lib/curl.ts", curl)
 			console.log("LibCUrl Fix !")
 		} catch (error) {
@@ -156,7 +156,7 @@ if (fs.existsSync(espPath + "modules/user/index.tsx")) {
 /* replace start prpject */
 if (fs.existsSync(rootPath + "package.json")) {
 	let pack = fs.readFileSync(rootPath + "package.json", { encoding: 'utf8' })
-	pack = pack.replace(`"start": "esp start && expo start --dev-client",`, '"start": "esp start && expo start --web",')
+	pack = pack.replace(`"start": "esp start && npx expo start --dev-client",`, '"start": "esp start && npx expo start --web",')
 	fs.writeFileSync(rootPath + "package.json", pack)
 	console.log("package json ready Fix !")
 }

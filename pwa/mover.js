@@ -106,7 +106,8 @@ if (fs.existsSync(rootPath + "App.tsx")) {
 export`, `onAction(x));
 import * as serviceWorkerRegistration from "./src/serviceWorkerRegistration";
 serviceWorkerRegistration.register();
-export`)
+export
+`)
 		fs.writeFileSync(rootPath + "App.tsx", pack)
 		console.log("App.tsx updated !")
 	} catch (error) {
