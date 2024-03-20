@@ -1,6 +1,5 @@
 [
   "react-native-web",
   "@expo/webpack-config",
-  "react-dom",
-  "crypto"
+  "react-dom"
 ]
