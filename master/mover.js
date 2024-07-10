@@ -131,6 +131,14 @@ if (!fs.existsSync(espPath + '/modules/log')) {
 		}
 	}
 }
+
+/* replace utils getInstallationID */
+if (fs.existsSync(espPath + 'modules/lib/utils.ts')) {
+	let utilsString = fs.readFileSync(espPath + 'modules/lib/utils.ts', { encoding: 'utf8' })
+	utilsString = utilsString.replace(`resolve(String(Application.androidId || Application.getAndroidId()))`, `resolve(out)`)
+	fs.writeFileSync(espPath + "modules/lib/utils.ts", utilsString)
+}
+
 /* replace user index logger */
 if (fs.existsSync(espPath + "modules/user/index.tsx")) {
 	let userIndexLimitReady = fs.readFileSync(espPath + "modules/user/index.tsx", { encoding: 'utf8' })
